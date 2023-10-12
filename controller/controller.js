@@ -26,7 +26,7 @@ const createUser = (async (req,res) =>{
         
         if (userExist) {
             // throw new Error("This user already exists. Please try another email.");
-            return status(401).json({"message":"This user already exists. Please try another email."})
+            return res.status(401).json({"message":"This user already exists. Please try another email."})
           }
 
         const hash = bcrypt.hashSync(password, 5);
