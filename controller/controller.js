@@ -26,7 +26,7 @@ const createUser = (async (req,res) =>{
         
         if (userExist) {
             // throw new Error("This user already exists. Please try another email.");
-            return res.status(401).json({"message":"This user already exists. Please try another email."})
+            return res.status(400).json({"message":"This user already exists. Please try another email."})
           }
 
         const hash = bcrypt.hashSync(password, 5);
@@ -51,15 +51,16 @@ const login = (async(req,res) =>{
 
         if(!emailExist){
             // throw new Error("this email not exist try again.")
-            return res.status(401).json({"message":"this email not exist try again."})
+            return res.status(400).json({"message":"this email not exist try again."})
         }
 
         const isPasswordMatch = await bcrypt.compare(password, emailExist.password);
 
         if(!isPasswordMatch){
-            throw new Error("the password not match try again.")
+            // throw new Error("the password not match try again.")
+            return res.status(400).json({"message":"the password not match try again."})
         }
-        return res.status(201).json({userData:emailExist,token:CreateToken(emailExist._id)});
+        return res.status(200).json({userData:emailExist,token:CreateToken(emailExist._id)});
 
     } catch (error) {
         return res.status(400).json({"message":error.message});
