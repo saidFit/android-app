@@ -50,7 +50,8 @@ const login = (async(req,res) =>{
         const emailExist =await User.findOne({email:email});
 
         if(!emailExist){
-            throw new Error("this email not exist try again.")
+            // throw new Error("this email not exist try again.")
+            return res.status(401).json({"message":"this email not exist try again."})
         }
 
         const isPasswordMatch = await bcrypt.compare(password, emailExist.password);
