@@ -4,8 +4,8 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const AuthRouter = require("./routes/auth")
-
+const AuthRouter = require("./routes/auth");
+const TodoRouter = require("./routes/todo");
 
 const app = express();
 
@@ -28,14 +28,15 @@ app.get("/todo", (req, res) => {
   res.status(200).json({ "name": "said", "title": req.title });
 });
 
-app.post("/postTodo", (req, res) => {
-  const { name, color } = req.body;
-  console.log(name);
-  res.status(200).json({ "name": name, "color": color });
-});
+// app.post("/postTodo", (req, res) => {
+//   const { name, color } = req.body;
+//   console.log(name);
+//   res.status(200).json({ "name": name, "color": color });
+// });
 
 // -------Router----------//
 app.use("/auth",AuthRouter);
+app.use("/todo",TodoRouter);
 
 mongoose.set('strictQuery', true)
 const PORT = process.env.PORT || 5000
