@@ -30,7 +30,7 @@ const getAllTodosFinished = (async(req,res) =>{
 
     try {
         const todoFinished = await Todo.find({isFinished:true});
-        res.status(200).json({"todosFinished":todoFinished});
+        res.status(200).json({"todos":todoFinished});
     } catch (error) {
         res.status(401).json({"message":error.message})
     }
@@ -38,7 +38,7 @@ const getAllTodosFinished = (async(req,res) =>{
 
 })
 
-const getAllTodos = (async(req,res) =>{
+const getAllTodosNoFinished = (async(req,res) =>{
 
 
     try{
@@ -112,7 +112,7 @@ const deleteTodo = (async(req,res) =>{
 
 module.exports={
     createTodo,
-    getAllTodos,
+    getAllTodosNoFinished,
     updateTodo,
     deleteTodo,
     getAllTodosFinished,
