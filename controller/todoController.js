@@ -96,7 +96,7 @@ const deleteTodo = (async(req,res) =>{
         const deleteTodo = await Todo.findByIdAndRemove(id);
 
         if(!deleteTodo){
-            return res.status(404).json({"message":"todo not found"})
+            return res.status(404).json({"message":"todo not found at this id"})
         }
 
         const todos = await Todo.find();
