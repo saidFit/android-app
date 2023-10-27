@@ -8,7 +8,7 @@ const autherization = require('../middleware/autherization');
 
 router.post("/register",createUser);
 router.post("/login",login)
-router.put("/updateUser/:id",autherization,updateProfile)
+router.post("/updateUser/:id",autherization,updateProfile)
 router.get("/geTodos",autherization,(req,res) =>{
     try {
         return res.status(201).json({"Todo":"successfully."}) 
