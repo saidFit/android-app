@@ -10,6 +10,8 @@ const TodoRouter = require("./routes/todo");
 const app = express();
 
 app.use(bodyParser.json()); // Use body-parser middleware for JSON requests
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(morgan("dev")); // Use Morgan for request logging
 dotenv.config();
 
