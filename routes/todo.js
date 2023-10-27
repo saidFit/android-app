@@ -10,6 +10,7 @@ router.get("/todosFinished",autherization,getAllTodosFinished);
 router.post("/updateTodoTofinished/:id",autherization,updateTodoToFinished);
 router.post("/postTodo",autherization,createTodo);
 router.put("/putTodo/:id",autherization,updateTodo);
+
 router.delete("/deleteTodo/:id",autherization,deleteTodo);
 
 module.exports = router;

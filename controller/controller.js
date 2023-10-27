@@ -69,7 +69,28 @@ const login = (async(req,res) =>{
 })
 
 
+const updateProfile = (async(req,res) =>{
+   
+   const {id} = req.params;
+
+   try {
+    
+       const updateUser = await User.findByIdAndUpdate(id,req.body,{new : true});
+       if(!updateUser){
+        return res.status(404).json({"message":"this user not found!"});
+       }
+    
+       res.status(201).json({"message":"update user profile successfully",user:updateUser})
+
+
+   } catch (error) {
+     res.status(400).json({"message":error.message})
+   }
+    
+})
+
 module.exports={
     createUser,
-    login
+    login,
+    updateProfile,
 }

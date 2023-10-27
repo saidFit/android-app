@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {createUser, login} = require("../controller/controller");
+const {createUser, login, updateProfile} = require("../controller/controller");
 const autherization = require('../middleware/autherization');
 
 
@@ -8,6 +8,7 @@ const autherization = require('../middleware/autherization');
 
 router.post("/register",createUser);
 router.post("/login",login)
+router.put("/updateUser/:id",autherization,updateProfile)
 router.get("/geTodos",autherization,(req,res) =>{
     try {
         return res.status(201).json({"Todo":"successfully."}) 
